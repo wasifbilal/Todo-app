@@ -40,7 +40,11 @@ function createTodoNode(todo, index) {
     }
 
     //add a double click event to edit the todo text
-    textSpan.addEventListener("dblclick", () => {
+    li.addEventListener("dblclick", (event) => {
+        if (event.target.closest("button, input")) {
+            return;
+        }
+
         const newText = prompt("Edit todo", todo.text);
         if (newText !== null && newText.trim() !== "") {
             todo.text = newText.trim();
